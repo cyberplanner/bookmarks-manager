@@ -8,6 +8,9 @@
       <li>
         title: <%= link.title %>
         url: <%= link.url %>
+        <% if !link.tags.empty? %>
+        tag: <%= link.tags.first.name %>
+        <% end %>
       </li>
       <% end %>
     </ul>
