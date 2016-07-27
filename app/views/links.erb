@@ -1,0 +1,15 @@
+<html>
+  <head>
+  </head>
+
+  <body>
+    <ul id="links">
+      <% @links.each do |link| %>
+      <li>
+        title: <%= link.title %>
+        url: <%= link.url %>
+      </li>
+      <% end %>
+    </ul>
+  </body>
+</html>

@@ -1,6 +1,4 @@
 require "capybara/rspec"
-# require_relative "../app/models/link"
-require "./app/models/link"
 require "./app/app.rb"
 
 Capybara.app = BookMarkManager
