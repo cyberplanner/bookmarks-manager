@@ -22,8 +22,8 @@ get '/links' do
   erb :links
 end
 
-get '/tags/bubbles' do
-  @links = Link.all('tags.name' => "bubbles")
+get '/tags/:tag' do
+  @links = Link.all('tags.name' => params[:tag] )
   erb :links
 end
 
