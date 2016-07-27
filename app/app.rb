@@ -22,6 +22,11 @@ get '/links' do
   erb :links
 end
 
+get '/tags/bubbles' do
+  @links = Link.all('tags.name' => "bubbles")
+  erb :links
+end
+
 
 
   run! if app_file == $0
