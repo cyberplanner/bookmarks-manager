@@ -4,6 +4,30 @@ require "sinatra/base"
 require_relative "./models/data_mapper_setup"
 
 class BookMarkManager < Sinatra::Base
+enable :sessions
+set :sessions_secret, 'super sercret'
+
+helpers do
+  def current_user
+    @current_user ||= User.get(session[:user_id])
+  end
+end
+
+
+get '/users/new' do
+  erb :'users/new'
+end
+
+
+post '/users' do
+  user = User.create(user_name: params[:user_name], password: params[:password], email: params[:email])
+  session[:user_id] = user.id
+  redirect '/users'
+end
+
+get '/users' do
+  erb :users
+end
 
 get '/links/new' do
   erb :new
