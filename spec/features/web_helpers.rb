@@ -10,8 +10,9 @@ end
 
 def sign_up
   visit '/users/new'
-  fill_in :user_name, with: "David"
-  fill_in :password, with: "123456789"
-  fill_in :email, with: "David@mail.com"
+  fill_in :user_name, with:             "David"
+  fill_in :password, with:              "123456789"
+  fill_in :email, with:                 "David@mail.com"
+  fill_in :password_confirmation, with: "123456789"
   click_button "Register"
 end

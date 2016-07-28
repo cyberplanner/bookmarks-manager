@@ -20,7 +20,8 @@ end
 
 
 post '/users' do
-  user = User.create(user_name: params[:user_name], password: params[:password], email: params[:email])
+  user = User.create(user_name: params[:user_name], password: params[:password], password_confirmation: params[:password_confirmation], email: params[:email])
+  #user.password_confirmation =  params[:password_confirmation]
   session[:user_id] = user.id
   redirect '/users'
 end
