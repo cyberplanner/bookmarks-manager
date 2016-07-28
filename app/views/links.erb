@@ -8,9 +8,13 @@
       <li>
         title: <%= link.title %>
         url: <%= link.url %>
+
         <% if !link.tags.empty? %>
-        tag: <%= link.tags.first.name %>
+          <% tag_names = [] %>
+          <% link.tags.each { |tag| tag_names << tag.name }%>
+        tags: <%= tag_names.join(", ") %>
         <% end %>
+
       </li>
       <% end %>
     </ul>

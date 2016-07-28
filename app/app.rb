@@ -10,10 +10,13 @@ get '/links/new' do
 end
 
 post '/links' do
-  tag = Tag.create(name: params[:tag])
   link = Link.create(title: params[:title], url: params[:url])
-  link.tags << tag
-  link.save
+  params[:tag].split(", ").each do | tag |
+    tag = Tag.create(name: tag )
+    link.tags << tag
+    link.save
+  end
+
   redirect '/links'
 end
 
