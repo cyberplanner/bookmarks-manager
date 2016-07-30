@@ -4,9 +4,13 @@
   </head>
 
   <body>
-    <% if flash[:notice] %>
-    <div id="notice"><%= flash[:notice] %></div>
-
+    <% if flash[:errors] && !flash[:errors].empty? %>
+      <h4>Something went wrong:</h4>
+      <ul id="erroes">
+        <% flash[:errors].each do |error| %>
+          <li><%= error %></li>
+        <% end %>
+      </ul>
     <% end %>
 
     <% if current_user %>

@@ -14,14 +14,24 @@ feature "Users sign-up" do
     fill_in :email, with:                  "David@mail.com"
     expect { click_button "Register" }.not_to change(User, :count)
     expect(current_path).to eq '/users'
-    expect(page).to have_content("Password and confirmation password do not match")
+    expect(page).to have_content("Password does not match")
   end
 
   scenario "user can't signup with blank email address" do
     expect{ sign_up(email: nil) }.not_to change(User, :count)
+    expect(current_path).to eq('/users')
+    expect(page).to have_content('Email must not be blank')
   end
 
-  scenario "user can't sign up with an invalid email address" do
+  scenario "user can't signup with an invalid email address" do
     expect{ sign_up(email: "fff00" ) }.not_to change(User, :count)
+    expect(current_path).to eq('/users')
+    expect(page).to have_content('Email has an invalid format')
+  end
+
+  scenario "user can't signup with an already registered email" do
+    sign_up
+    expect{ sign_up }.not_to change(User, :count)
+    expect(page).to have_content "Email is already taken"
   end
 end
